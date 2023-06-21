@@ -5,12 +5,10 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.springboot.common.Result;
-import com.example.springboot.entity.Animal;
-import com.example.springboot.mapper.AnimalMapper;
+import com.example.springboot.entity.Book;
+import com.example.springboot.mapper.BookMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
 
 /**
  * @Author 小吴
@@ -18,34 +16,34 @@ import javax.annotation.Resource;
  * @Version 1.0
  */
 @RestController
-@RequestMapping(value = "/animal")
-public class animalController {
+@RequestMapping(value = "/book")
+public class bookController {
 
     @Autowired
-    private AnimalMapper animalMapper;
+    private BookMapper bookMapper;
     /**
      * 新增
      * @return
      */
     @PostMapping
-    public Result save(@RequestBody Animal animal){
-        animalMapper.insert(animal);
+    public Result save(@RequestBody Book book){
+        bookMapper.insert(book);
         return Result.success();
     }
 
     /**
      * 更新修改
-     * @param animal
+     * @param book
      * @return
      */
     @PutMapping
-    public Result update(@RequestBody Animal animal){
-        animalMapper.updateById(animal);
+    public Result update(@RequestBody Book book){
+        bookMapper.updateById(book);
         return Result.success();
     }
     @DeleteMapping("/{id}")
     public Result delete(@PathVariable Long id){
-        animalMapper.deleteById(id);
+        bookMapper.deleteById(id);
         return Result.success();
     }
     /**
@@ -57,13 +55,13 @@ public class animalController {
      */
     @GetMapping
     public Result findPage(@RequestParam(defaultValue = "1") Integer pageNum,
-                           @RequestParam(defaultValue = "10") Integer pageSize,
+                           @RequestParam(defaultValue = "5") Integer pageSize,
                            @RequestParam(defaultValue = "") String search){
-        LambdaQueryWrapper<Animal> wrapper = Wrappers.<Animal>lambdaQuery();
+        LambdaQueryWrapper<Book> wrapper = Wrappers.<Book>lambdaQuery();
         if(StringUtils.isNotBlank(search)){
-            wrapper.like(Animal::getName,search);
+            wrapper.like(Book::getName,search);
         }
-        Page<Animal> animalPage = animalMapper.selectPage(new Page<>(pageNum, pageSize), wrapper);
+        Page<Book> animalPage = bookMapper.selectPage(new Page<>(pageNum, pageSize), wrapper);
         return Result.success(animalPage);
     }
 }

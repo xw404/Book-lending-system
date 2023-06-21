@@ -12,16 +12,20 @@ import lombok.Data;
  * @Version 1.0
  */
 @Data
-@TableName("animal")
-public class Animal {
+@TableName("book")
+public class Book {
     @TableId(type = IdType.AUTO)
     private Integer id;
     private String name;
-    private String love;
     private String kind;
-    private Integer userId;
+    private String author;
+    private String press;
+    private String introductory;
+    private Integer totalcount;
+    private Integer surpluscount;
+    private Integer weedingcount;
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
-    private Integer createTime;
+    private String createtime;
     private String picture;
 
 }

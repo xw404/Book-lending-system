@@ -1,7 +1,7 @@
 package com.example.springboot.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.example.springboot.entity.Animal;
+import com.example.springboot.entity.Book;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -10,5 +10,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @Version 1.0
  */
 @Mapper
-public interface AnimalMapper extends BaseMapper<Animal>{
+public interface BookMapper extends BaseMapper<Book>{
 }
